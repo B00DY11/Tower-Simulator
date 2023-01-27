@@ -1,0 +1,30 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Tower Simulator GUI", HidePremium = false, IntroEnabled = true,IntroText = "Tower Simulator GUI", SaveConfig = true, ConfigFolder = "Tower Simulator GUI"})
+
+_G.placeblock = true 
+
+function placeblock()
+
+while _G.placeblock == true do
+game:GetService("ReplicatedStorage").Remotes.PlaceBlock:FireServer()
+wait(.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+end
+end
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+MainTab:AddToggle({
+	Name = "Auto Place Block",
+	Default = false,
+	Callback = function(Value)
+		_G.placeblock = (Value)
+        placeblock()
+	end    
+})
+
+OrionLib:Init()
